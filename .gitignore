@@ -1,0 +1,8 @@
+# Vim Plugins
+.vim/plugged
+
+.netrwhist
+
+# Cache
+cache
+
