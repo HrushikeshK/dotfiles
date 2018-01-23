@@ -184,3 +184,8 @@ export GEM_HOME=$HOME/.gem
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# Create at least one tmux session
+if (! tmux has-session -t "misc" 2> /dev/null); then
+    tmux new-session -s misc    
+fi
