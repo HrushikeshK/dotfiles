@@ -80,7 +80,7 @@ ino <left> <Nop>
 ino <right> <Nop>
 
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.dotfiles/.vim/plugged')
+call plug#begin('~/.dotfiles/vim/.vim/plugged')
 
 Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 Plug 'sickill/vim-pasta' " context-aware pasting
