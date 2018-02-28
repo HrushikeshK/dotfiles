@@ -23,6 +23,6 @@
 #### Clone and install
 
 ```
-$ git clone git@github.com:HrushikeshK/dotfiles.git ~/.dotfiles
+$ git clone https://github.com/HrushikeshK/dotfiles.git ~/.dotfiles
 $ ~/.dotfiles/updateDotfiles.sh
 ```
