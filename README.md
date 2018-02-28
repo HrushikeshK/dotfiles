@@ -1,10 +1,10 @@
 ## Dotfiles
 
-* Gnome
+#### Gnome
 
 ![img01](img01.png)
 
-* i3-gaps
+#### i3-gaps
 
 ![img02](img02.png)
 
@@ -20,7 +20,7 @@
 * compton
 
 
-* Clone and install
+#### Clone and install
 
 ```
 $ git clone git@github.com:HrushikeshK/dotfiles.git ~/.dotfiles
