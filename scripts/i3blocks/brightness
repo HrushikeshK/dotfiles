@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	# scroll up
+	4) light -A 5 ;;
+
+	# Scroll down
+	# Decrease Brightness
+	5) light -U 5 ;;
+esac
+
+printf "%.0f\n" "$(light -G)"
