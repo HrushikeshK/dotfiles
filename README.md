@@ -18,7 +18,7 @@
 * i3-gaps
 * ranger
 * compton
-
+* feh
 
 #### Clone and install
 

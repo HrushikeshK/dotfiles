@@ -139,6 +139,10 @@ bindsym $mod+bracketright exec cmus-remote --next
 bindsym $mod+Shift+minus exec light -U 5
 bindsym $mod+Shift+plus exec light -A 5
 
+# backlight controls (actual buttons on laptop)
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 5
+
 bindsym $mod+Ctrl+Escape exec i3lock-wrapper -l
 bindsym XF86Sleep exec i3lock-wrapper -l && echo mem > /sys/power/state
 bindsym XF86TouchpadToggle exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
