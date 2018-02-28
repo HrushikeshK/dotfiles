@@ -1,0 +1,8 @@
+# Set screensaver time to 15 mins
+$ xset s 900
+
+# Set sleep time to 20 mins and disable standby and suspend
+$ xset dpms 0 0 1200
+
+# Get info about current X settings
+$ xset q
