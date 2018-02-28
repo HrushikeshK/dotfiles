@@ -6,3 +6,6 @@
 # Cache
 cache
 
+# Vim swp files
+*.swp
+

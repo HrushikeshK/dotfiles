@@ -13,6 +13,7 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.*
 #exec_always --no-startup-id  python3 ~/.config/i3/i3-autoname-workspaces.py
 exec_always --no-startup-id compton -b -f
 #exec --no-startup-id redshift
+exec --no-startup-id xautolock -time 10 -locker "i3lock-wrapper -l"
 
 #Font for window titles.
 font pango:FuraMono Nerd Font Medium 13
@@ -50,7 +51,7 @@ bindsym $mod+Shift+s move scratchpad
 bindsym $mod+s scratchpad show
 
 # i3-gaps stuff :)
-gaps inner 25
+gaps inner 10
 gaps outer 0
 smart_borders on
 new_window none
