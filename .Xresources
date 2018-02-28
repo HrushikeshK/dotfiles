@@ -1,0 +1,148 @@
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+!Xft.autohint: 0
+
+! URXVT
+! General settings
+URxvt.saveLines: 2000
+URxvt.scrollBar: False
+URxvt.scrollstyle: rxvt
+URxvt.termName: xterm-256color
+URxvt.urgentOnBell: True
+URxvt.cursorBlink: False
+
+! Extensions
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+URxvt.urlLauncher: xdg-open
+URxvt.urlButton: 1
+URxvt.underlineURLs: True
+
+URxvt.copyCommand:  xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+
+! Keybindings
+URxvt.keysym.Mod4-c: perl:clipboard:copy
+URxvt.keysym.Mod4-v: perl:clipboard:paste
+URxvt.keysym.Mod4-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.C-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-u: perl:url-select:select_next
+
+! Fonts
+
+!Courier
+!URxvt.font: xft:Courier-10
+
+!Inconsolata
+URxvt.font: xft:FuraMono\ Nerd\ Font:style=Medium:size=12
+URxvt.boldFont: xft:FuraMono\ Nerd\ Font\ Medium-12
+URxvt.letterSpace: -1
+
+!Inconsolata-g
+!URxvt.font: xft:InconsolataG-10
+!URxvt.letterSpace: -1
+
+!Anonymous Pro
+!URxvt.font: xft:Anonymous\ Pro-12
+!URxvt.letterSpace: -1
+
+!Monaco
+!URxvt.font: xft:Monaco-10
+!URxvt.letterSpace: -1
+
+!Droid Sans Mono
+!URxvt.font: xft:Droid Sans Mono-10
+!URxvt.letterSpace: -1
+
+!DejaVu Sans
+!URxvt.font: xft:DejaVu Sans Mono-10
+!URxvt.letterSpace: -1
+
+!Manospace
+!URxvt.font: xft:Monospace-10
+!URxvt.letterSpace: -1
+
+!Terminus
+!URxvt.font: xft:Terminus-10
+
+! Tango theme
+
+URxvt.background: #1C1C1C
+URxvt.foreground: #DEDEDE
+
+! black
+URxvt.color0  : #2E3436
+URxvt.color8  : #555753
+! red
+URxvt.color1  : #CC0000
+URxvt.color9  : #EF2929
+! green
+URxvt.color2  : #4E9A06
+URxvt.color10 : #8AE234
+! yellow
+URxvt.color3  : #C4A000
+URxvt.color11 : #FCE94F
+! blue
+URxvt.color4  : #3465A4
+URxvt.color12 : #729FCF
+! magenta
+URxvt.color5  : #75507B
+URxvt.color13 : #AD7FA8
+! cyan
+URxvt.color6  : #06989A
+URxvt.color14 : #34E2E2
+! white
+URxvt.color7  : #D3D7CF
+URxvt.color15 : #EEEEEC
+
+! Rofi Settings
+rofi.width:		52
+rofi.padding:	300
+rofi.fullscreen: true
+rofi.fixed-num-lines: true
+rofi.opacity: 85
+rofi.bw:		0
+rofi.location:	0
+rofi.terminal:	termite
+rofi.lines:		10
+rofi.eh:		1
+rofi.hide-scrollbar: true
+rofi.font:      FuraMonoForPowerline Nerd Font Medium 30
+
+!! Rofi Colorsheme
+!! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+!rofi.color-window: argb:aa263238, argb:aa263238, #26a69a
+!rofi.color-normal: argb:0263238, #eceff1, argb:0263238, #f4246b, #eceff1
+!rofi.color-active: #fdf6e3, #268bd2, #eee8d5, #268bd2, #fdf6e3
+!rofi.color-urgent: #fdf6e3, #dc322f, #eee8d5, #dc322f, #fdf6e3
+
+! gruvbox-rofi
+!-------------------------------------------------------------------------------
+! Rofi color theme
+!
+! Based on the Gruvbox color scheme for Vim by morhetz
+! https://github.com/morhetz/gruvbox
+!
+! File: gruvbox-dark.theme
+! Desc: Gruvbox dark color theme for Rofi
+! Author: bardisty <b@bah.im>
+! Source: https://github.com/bardisty/gruvbox-rofi
+! Modified: Sat Oct 22 2016 03:11:40 PDT -0700
+!-------------------------------------------------------------------------------
+
+! Enable the extended coloring options
+rofi.color-enabled: true
+
+!                  bg       border   separator
+rofi.color-window: #282828, #a89984, #a89984
+
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: #282828, #ebdbb2, #32302f, #665c54, #fbf1c7
+rofi.color-active: #d79921, #282828, #d79921, #fabd2f, #282828
+rofi.color-urgent: #cc241d, #282828, #cc241d, #fb4934, #282828

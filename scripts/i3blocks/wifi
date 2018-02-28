@@ -1,0 +1,24 @@
+#!/bin/bash
+SSID=$(nmcli device wifi | grep -e '*' | awk '{ if (! /SSID/) print $2 }')
+ENABLED=$(nmcli radio wifi | grep enabled)
+CONNECTED=$(nmcli connection show --active | grep wlp2s0)
+
+if [ $ENABLED ]
+then
+    if [[ $CONNECTED ]]
+    then
+        STRENGTH=$(nmcli device wifi | grep -e '*' | awk '{ if (! /SSID/) print $7 }')
+        echo " $STRENGTH% @$SSID"
+    else
+        echo " No Wifi"
+    fi
+elif [ ! $ENABLED ]
+then
+    echo " Airplane Mode"
+    separator_block_width=3
+fi
+
+case $BLOCK_BUTTON in
+	1) nm-connection-editor ;;
+	3) sh ~/dotfiles/scripts/i3blocks/toggle_wifi.sh ;;
+esac

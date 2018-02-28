@@ -180,12 +180,14 @@ autoload -U compinit && compinit
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export GEM_HOME=$HOME/.gem
 
+# Create at least one tmux session
+if (! tmux has-session -t "misc" 2> /dev/null); then
+    tmux new-session -s misc    
+fi
+
 # Tilix Config
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-# Create at least one tmux session
-if (! tmux has-session -t "misc" 2> /dev/null); then
-    tmux new-session -s misc    
-fi
+

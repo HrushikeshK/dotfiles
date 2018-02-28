@@ -1,0 +1,291 @@
+#To do list
+#fix up bar
+#
+# See http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+#default keyboard repeat is too slow for me
+#exec xset r rate 175 25
+
+#AUTOSTART STUFF
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.*
+#exec_always --no-startup-id  python3 ~/.config/i3/i3-autoname-workspaces.py
+exec_always --no-startup-id compton -b -f
+#exec --no-startup-id redshift
+
+#Font for window titles.
+font pango:FuraMono Nerd Font Medium 13
+#Colors
+set $back               #383C4A
+set $primary            #D0D0D0
+set $secondary          #0FE0C9
+set $black              #282A2E
+set $grey               #303030
+set $white              #C5C8C6
+
+# class                 border   backgr.  text    indicator child_border
+client.focused          $primary $primary $black  #2e9ef4   $primary
+client.focused_inactive $black   $primary $black  #484e50   $black
+client.unfocused        $black   $back    $white  #292d2e   $black
+client.urgent           #2f343a  #900000  $white  #900000   #900000
+client.placeholder      #000000  #0c0c0c  $white  #000000   #0c0c0c
+client.background       $white
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+popup_during_fullscreen smart
+bindsym $mod+t exec tilix
+bindsym $mod+Return exec tilix
+mouse_warping none
+
+for_window [class="^.*"] border pixel 2
+# Float Guake to the top of the screen
+# for_window [class="Main.py"] floating enable, border none, move position 0 25
+
+# Scratchpad stuff
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+s move scratchpad
+# Show the first scratchpad window
+bindsym $mod+s scratchpad show
+
+# i3-gaps stuff :)
+gaps inner 25
+gaps outer 0
+smart_borders on
+new_window none
+
+bindsym $mod+g exec ~/dotfiles/scripts/toggle_gaps.sh
+#edit gaps mode
+#########################################################################
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0 bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+##########################################################################
+
+#custom app commands (?i) just means case insenitive..
+#for_window [class="(?i)feh"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)qemu-system-x86_64"] floating enable
+#for_window [class="VirtualBox"] floating enable
+#for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="About Mozilla Firefox"] floating enable
+for_window [title="About Nightly"] floating enable
+for_window [title="Library"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi (program launcher)
+bindsym $mod+d exec --no-startup-id rofi -monitor -1 -show run
+# start rofi (window switcher)
+bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
+
+#use "xmodmap -pke" to get list of special keys
+#custom special key fixes
+
+#audio controls
+bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym $mod+equal exec pulseaudio-ctl up
+bindsym $mod+minus exec pulseaudio-ctl down
+bindsym $mod+0 exec pulseaudio-ctl mute
+
+#cmus controls
+bindsym $mod+p exec cmus-remote --pause
+bindsym $mod+bracketleft exec cmus-remote --prev
+bindsym $mod+bracketright exec cmus-remote --next
+
+#backlight controls (laptop monitor)
+bindsym $mod+Shift+minus exec light -U 5
+bindsym $mod+Shift+plus exec light -A 5
+
+bindsym $mod+Ctrl+Escape exec i3lock-wrapper -l
+bindsym XF86Sleep exec i3lock-wrapper -l && echo mem > /sys/power/state
+bindsym XF86TouchpadToggle exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
+bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots/'
+bindsym $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/'
+bindsym $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
+
+# vi keybindings
+set $vi_left h
+set $vi_down j
+set $vi_up k
+set $vi_right l
+
+# change focus
+bindsym $mod+$vi_left focus left
+bindsym $mod+$vi_down focus down
+bindsym $mod+$vi_up focus up
+bindsym $mod+$vi_right focus right
+
+# move focused window
+bindsym $mod+Shift+$vi_left move left
+bindsym $mod+Shift+$vi_down move down
+bindsym $mod+Shift+$vi_up move up
+bindsym $mod+Shift+$vi_right move right
+
+# split in burger (horizontal) orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+q layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+p focus parent
+
+set $workspace1 "1:  "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1 
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+
+bindsym $mod+Tab workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+
+# Assign workspaces
+assign [class="Firefox"] $workspace1
+assign [class="Tilix"] $workspace2
+assign [class="Spotify"] $workspace4
+assign [class="Vmware"] $workspace5
+assign [class="Google-chrome"] $workspace1
+
+# adjust displays
+bindsym $mod+Shift+m exec bash ~/dotfiles/scripts/configure_xrandr.sh
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym $vi_left resize shrink width 2 px or 2 ppt
+    bindsym $vi_up resize grow height 2 px or 2 ppt
+    bindsym $vi_down resize shrink height 2 px or 2 ppt
+    bindsym $vi_right resize grow width 2 px or 2 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 2 px or 2 ppt
+    bindsym Down resize grow height 2 px or 2 ppt
+    bindsym Up resize shrink height 2 px or 2 ppt
+    bindsym Right resize grow width 2 px or 2 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# ------------------------
+# Add mode for lock, logout, suspend, hibernate, reboot and poweroff
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+
+# ----------------
+bindsym $mod+r mode "resize"
+
+bar {
+       status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err
+       workspace_buttons yes
+       #output eDP-1-1
+       tray_output eDP-1-1
+       mode dock
+       position top
+       height 20
+       font pango: Fira Mono Medium for Powerline, FontAwesome 13
+       colors {
+           background $back
+           separator $primary
+           statusline $primary
+           focused_workspace $primary $primary $back
+           active_workspace #1D2021 #1D2021 $primary
+           inactive_workspace $back $back $primary
+           urgent_workspace #CC241D #CC241D #EBDBB2
+       }
+    }
+# vim:filetype=i3
