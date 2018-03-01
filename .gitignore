@@ -9,3 +9,5 @@ cache
 # Vim swp files
 *.swp
 
+# Log files
+*.err
