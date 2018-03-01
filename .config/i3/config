@@ -205,10 +205,11 @@ mode $mode_move_to_workspace {
     bindsym 9 move container to workspace $workspace9; mode "default"
 }
 bindsym $mod+shift+w mode $mode_move_to_workspace
+# --------------------------------------------
 
 set $workspace1 "1:  "
 set $workspace2 "2: "
-set $workspace3 "3: "
+set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
 set $workspace6 "6: "
@@ -242,14 +243,15 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 
 # Assign workspaces
 assign [class="Firefox"] $workspace1
-assign [class="Tilix"] $workspace2
-assign [class="Spotify"] $workspace4
-assign [class="Vmware"] $workspace5
 assign [class="Google-chrome"] $workspace1
+assign [class="Tilix"] $workspace2
+assign [class="Evince"] $workspace3
+for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
+assign [class="Vmware"] $workspace5
 
 # Assign workspace 10 for the projector
 workspace $workspace9 output HDMI-1
-
+workspace $workspace2 output HDMI-1
 # adjust displays
 bindsym $mod+Shift+m exec bash ~/dotfiles/scripts/configure_xrandr.sh
 # reload the configuration file
