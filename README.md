@@ -6,7 +6,7 @@
 
 #### i3-gaps
 
-![img02](img02.png)
+![img03](img03.png)
 
 #### Dependencies
 * Awesome Fonts
