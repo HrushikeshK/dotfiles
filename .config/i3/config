@@ -151,6 +151,10 @@ bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/'
 bindsym --release $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/'
 bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
 
+# move workspace to left and right monitors
+bindsym $mod+Shift+bracketleft move workspace to output left
+bindsym $mod+Shift+bracketright move workspace to output right
+
 # vi keybindings
 set $vi_left h
 set $vi_down j
