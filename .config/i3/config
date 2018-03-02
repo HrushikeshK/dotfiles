@@ -13,7 +13,7 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.*
 #exec_always --no-startup-id  python3 ~/.config/i3/i3-autoname-workspaces.py
 exec_always --no-startup-id compton -b -f
 #exec --no-startup-id redshift 
-exec --no-startup-id xautolock -time 10 -locker "i3lock-wrapper -l"
+exec --no-startup-id xautolock -time 10 -locker "i3lock-multimonitor"
 exec --no-startup-id xset dpms 0 0 1200
 exec --no-startup-id xset s 1200
 exec --no-startup-id tilix
@@ -145,9 +145,9 @@ bindsym $mod+Shift+plus exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86MonBrightnessUp exec light -A 5
 
-bindsym $mod+Ctrl+Escape exec i3lock-wrapper -l
-bindsym XF86Sleep exec i3lock-wrapper -l && echo mem > /sys/power/state
-bindsym XF86TouchpadToggle exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
+bindsym $mod+Ctrl+Escape exec i3lock-multimonitor
+bindsym XF86Sleep exec i3lock-multimonitor && echo mem > /sys/power/state
+bindsym $mod+grave exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
 bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/'
 bindsym --release $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/'
 bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
@@ -324,6 +324,19 @@ mode $display_mode {
 bindsym $mod+Insert mode $display_mode
 
 # ------------------------------------------------
+
+# Mode to set a monitor as primary
+set $primary_mode "Set primary monitor (l)aptop (h)dmi"
+mode $primary_mode {
+    bindsym l exec --no-startup-id "~/.dotfiles/scripts/set-primary-monitor.sh laptop"; mode "default"
+    bindsym h exec --no-startup-id "~/.dotfiles/scripts/set-primary-monitor.sh hdmi"; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"    
+}
+bindsym $mod+Shift+p mode $primary_mode
+
+# -----------------------------------------
 
 bar {
        status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err

@@ -8,6 +8,7 @@ cache
 
 # Vim swp files
 *.swp
+*.swo
 
 # Log files
 *.err

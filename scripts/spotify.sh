@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [ ! $(pidof spotify) ]; then
-    echo ' -'
+    echo ' -'
     exit 0
 fi
 
@@ -11,14 +11,14 @@ title=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/
 
 if ! "$title" 2> /dev/null ; then
     artist=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata'|egrep -A 2 "artist"|egrep -v "artist"|egrep -v "array"|cut -b 27-|cut -d '"' -f 1|egrep -v ^$`
-    echo -n " " "$title" "-" "$artist ";
+    echo -n " " "$title" "-" "$artist ";
 fi
 
 status=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'PlaybackStatus'|egrep -A 1 "string"|cut -b 26-|cut -d '"' -f 1|egrep -v ^$`
 
 case $status in 
-    Playing) echo " " ;;
-    Paused) echo " " ;;
+    Playing) echo " " ;;  
+    Paused) echo " " ;;
     Stopped) echo " " ;;
 esac
 

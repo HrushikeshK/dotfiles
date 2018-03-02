@@ -169,6 +169,7 @@ alias tns='tmux new-session -s'
 # now `cclip' can be used when you it to be available to `ctrl-[vxc]'
 alias cclip='xclip -selection clipboard'
 
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fpath=(~/.zsh/completions $fpath) 
