@@ -5,8 +5,9 @@ HDMI="HDMI-1"
 
 MODE=$1
 
-if [ $# != 1 ]; then
+if [ $# -ne 1 ]; then
     echo "Usage: $0 [laptop, dual, clone]"
+    exit 0
 fi
 
 if [ $1 == 'laptop' ]; then
