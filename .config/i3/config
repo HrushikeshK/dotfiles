@@ -12,11 +12,12 @@ set $mod Mod4
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.*
 #exec_always --no-startup-id  python3 ~/.config/i3/i3-autoname-workspaces.py
 exec_always --no-startup-id compton -b -f
-#exec --no-startup-id redshift
+#exec --no-startup-id redshift 
 exec --no-startup-id xautolock -time 10 -locker "i3lock-wrapper -l"
 exec --no-startup-id xset dpms 0 0 1200
 exec --no-startup-id xset s 1200
 exec --no-startup-id tilix
+exec --no-startup-id nm-applet
 
 #Font for window titles.
 font pango:FuraMono Nerd Font Medium 13
@@ -217,7 +218,7 @@ set $workspace2 "2: "
 set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
-set $workspace6 "6: "
+set $workspace6 "6: "
 set $workspace7 "7: "
 set $workspace8 "8: "
 set $workspace9 "9: Projector"
@@ -253,9 +254,12 @@ assign [class="Tilix"] $workspace2
 assign [class="Evince"] $workspace3
 for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
 assign [class="Vmware"] $workspace5
+assign [class="Nautilus"] $workspace6
 
 # Assign workspace 10 for the projector
+workspace $workspace1 output eDP-1
 workspace $workspace2 output HDMI-1
+
 
 # adjust displays
 bindsym $mod+Shift+m exec bash ~/dotfiles/scripts/configure_xrandr.sh
@@ -325,7 +329,7 @@ bar {
        status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err
        workspace_buttons yes
        #output eDP-1-1
-       tray_output eDP-1-1
+       tray_output primary
        mode dock
        position top
        height 18

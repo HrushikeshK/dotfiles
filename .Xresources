@@ -114,6 +114,7 @@ rofi.lines:		10
 rofi.eh:		1
 rofi.hide-scrollbar: true
 rofi.font:      FuraMonoForPowerline Nerd Font Medium 30
+rofi.theme: Adapta-Nokto
 
 !! Rofi Colorsheme
 !! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
