@@ -127,7 +127,7 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
 #audio controls
 bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
 bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
-bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym XF86AudioMute exec amixer sset 'Master' toggle
 bindsym $mod+equal exec pulseaudio-ctl up
 bindsym $mod+minus exec pulseaudio-ctl down
 bindsym $mod+0 exec pulseaudio-ctl mute
