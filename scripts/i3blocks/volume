@@ -66,5 +66,11 @@ case $BLOCK_BUTTON in
 	5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
+# Change logo
+if [ $(amixer -c 0 cget numid=2,iface=CARD | awk -F"=" 'NR == 3 {print $2;}' | cut -d',' -f1) == 'on' ]; then
+  echo -n " "
+else
+  echo -n " "
+fi
 
 volume | format
