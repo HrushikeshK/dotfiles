@@ -18,6 +18,8 @@ exec --no-startup-id xset dpms 0 0 1200
 exec --no-startup-id xset s 1200
 exec --no-startup-id tilix
 exec --no-startup-id nm-applet
+exec --no-startup-id clipit
+#exec --no-startup-id volumeicon
 
 #Font for window titles.
 font pango:FuraMono Nerd Font Medium 13
@@ -112,6 +114,8 @@ for_window [title="Library"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+for_window [class="Gnome-terminal"] floating enable
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -148,9 +152,9 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym $mod+Ctrl+Escape exec i3lock-multimonitor
 bindsym XF86Sleep exec i3lock-multimonitor && echo mem > /sys/power/state
 bindsym $mod+grave exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
-bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/'
-bindsym --release $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/'
-bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/'
+bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
+bindsym --release $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
+bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
 
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
@@ -196,6 +200,15 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+p focus parent
+
+# Custom binds
+# Bind for vim-anywhere
+bindsym $mod+Shift+v exec ~/.vim-anywhere/bin/run
+# gnome-terminal 
+bindsym $mod+Shift+Return exec gnome-terminal --hide-menubar
+bindsym $mod+Shift+t exec gnome-terminal --hide-menubar
+# Slop for custom size terminal
+bindsym --release $mod+Shift+x exec --no-startup-id "bash ~/.dotfiles/t.sh"
 
 # Mode to move a container to different workspace
 set $mode_move_to_workspace "moveto_ws"

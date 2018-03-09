@@ -1,6 +1,6 @@
 ## Dotfiles
 
-#### Gnome
+#### Vim + Tmux
 
 ![img01](img01.png)
 
@@ -20,6 +20,8 @@
 * ranger
 * compton
 * feh
+* slop (for drawing terminal)
+* laptop-mode-tools (power management)
 
 #### Clone and install
 
