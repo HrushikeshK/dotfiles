@@ -21,7 +21,8 @@
 * compton
 * feh
 * slop (for drawing terminal)
-* laptop-mode-tools (power management)
+* tlp (power management)
+* i8kutils (fan speed control)
 
 #### Clone and install
 
