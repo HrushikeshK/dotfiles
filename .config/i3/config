@@ -9,7 +9,7 @@ set $mod Mod4
 #exec xset r rate 175 25
 
 #AUTOSTART STUFF
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.*
+exec_always --no-startup-id feh --bg-scale ~/.dotfiles/wallpaper.*
 #exec_always --no-startup-id  python3 ~/.config/i3/i3-autoname-workspaces.py
 exec_always --no-startup-id compton -b -f
 #exec --no-startup-id redshift 
@@ -62,7 +62,7 @@ gaps outer 0
 smart_borders on
 new_window none
 
-bindsym $mod+g exec ~/dotfiles/scripts/toggle_gaps.sh
+bindsym $mod+g exec ~/.dotfiles/scripts/toggle_gaps.sh
 #edit gaps mode
 #########################################################################
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -209,6 +209,13 @@ bindsym $mod+Shift+Return exec gnome-terminal --hide-menubar
 bindsym $mod+Shift+t exec gnome-terminal --hide-menubar
 # Slop for custom size terminal
 bindsym --release $mod+Shift+x exec --no-startup-id "bash ~/.dotfiles/t.sh"
+# Bind ranger
+bindsym $mod+Shift+f exec gnome-terminal --hide-menubar -- ranger
+# Bind google-chrome and firefox
+bindsym $mod+backslash exec google-chrome-stable
+bindsym $mod+Shift+backslash exec firefox
+
+
 
 # Mode to move a container to different workspace
 set $mode_move_to_workspace "moveto_ws"

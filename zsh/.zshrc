@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# export PATH=$HOME/bin:/usr/local/bin:$PATH 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
@@ -165,6 +164,7 @@ alias ta='tmux attach'
 alias tls='tmux ls'
 alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
+alias dU='du --max-depth=1 -h --apparent-size | sort -rh'
 
 # now `cclip' can be used when you it to be available to `ctrl-[vxc]'
 alias cclip='xclip -selection clipboard'

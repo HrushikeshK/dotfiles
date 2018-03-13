@@ -40,15 +40,15 @@ $full_text = "$percent%";
 
 if ($status eq 'Discharging') {
 	#$full_text .= ' DIS';
-	if ($percent < 20) {
-		$full_text .= ' ';
+    if ($percent < 20) {
+	$full_text .= ' ';
     } elsif ($percent < 40) {
         $full_text .= ' ';
     } elsif ($percent < 60) {
         $full_text .= ' ';
     } elsif ($percent < 75) {
-		$full_text .= ' ';
-	} elsif ($percent < 90) {
+	$full_text .= ' ';
+    } elsif ($percent < 90) {
         $full_text .= ' ';
     } 
  
