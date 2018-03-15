@@ -22,7 +22,8 @@
 * feh
 * slop (for drawing terminal)
 * tlp (power management)
-* i8kutils (fan speed control)
+* i8kutils (fan speed control for Dell laptops)
+* gsimplecal
 
 #### Clone and install
 
