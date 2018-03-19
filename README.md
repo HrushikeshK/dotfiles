@@ -12,6 +12,7 @@
 * Arch Linux
 * Awesome Fonts
 * Nerd Fonts
+* Termite
 * Zsh
 * Oh-my-zsh
 * tmux

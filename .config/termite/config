@@ -1,0 +1,50 @@
+[options]
+font = FuraMono Nerd Font Medium 12
+clickable_url = true
+scrollback_lines = 15000
+browser = google-chrome-stable
+#allow_bold = false
+
+
+[colors]
+foreground = #839496
+foreground_bold = #eee8d5
+foreground_dim = #888888
+#background = #002b36
+#background = rgba(63, 63, 63, 0.8)
+background = rgba(31, 31, 31, 0.85)
+cursor = #93a1a1
+
+# black
+color0  = #151515
+color8  = #5b5b5b
+
+# red
+color1  = #ac4142
+color9  = #ac4142
+
+# green
+color2  = #89c11b
+color10 = #89c11b
+
+# yellow
+color3  = #f4bf75
+color11 = #f4bf75
+
+# blue
+color4  = #2e82a5
+color12 = #2e82a5
+
+# magenta
+color5  = #aa759f
+color13 = #aa759f
+
+# cyan
+color6  = #37ada7
+color14 = #37ada7
+
+# white
+color7  = #dbdbdb
+color15 = #e0e0e0
+
+# vim: ft=dosini cms=#%s

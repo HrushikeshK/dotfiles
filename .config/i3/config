@@ -16,7 +16,7 @@ exec_always --no-startup-id compton -b -f
 exec --no-startup-id xautolock -time 10 -locker "i3lock-multimonitor"
 exec --no-startup-id xset dpms 0 0 1200
 exec --no-startup-id xset s 1200
-exec --no-startup-id tilix
+exec --no-startup-id termite
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 #exec --no-startup-id volumeicon
@@ -42,8 +42,8 @@ client.background       $white
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 popup_during_fullscreen smart
-bindsym $mod+t exec tilix
-bindsym $mod+Return exec tilix
+bindsym $mod+t exec termite
+bindsym $mod+Return exec termite
 mouse_warping none
 
 for_window [class="^.*"] border pixel 2
@@ -114,8 +114,9 @@ for_window [title="Library"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+for_window [class="float-window"] floating enable
 for_window [class="Gnome-terminal"] floating enable
-for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 18 px
+for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 18 px      # 18 is the height of i3blocks
 
 
 # kill focused window
@@ -205,13 +206,13 @@ bindsym $mod+space focus mode_toggle
 # Custom binds
 # Bind for vim-anywhere
 bindsym $mod+Shift+v exec ~/.vim-anywhere/bin/run
-# gnome-terminal 
-bindsym $mod+Shift+Return exec gnome-terminal --hide-menubar
-bindsym $mod+Shift+t exec gnome-terminal --hide-menubar
+# float termite
+bindsym $mod+Shift+Return exec termite --class "float-window"
+bindsym $mod+Shift+t exec  termite --class "float-window"
 # Slop for custom size terminal
-bindsym --release $mod+Shift+x exec --no-startup-id "bash ~/.dotfiles/t.sh"
+bindsym --release $mod+Shift+x exec --no-startup-id "bash ~/.dotfiles/scripts/t.sh"
 # Bind ranger
-bindsym $mod+Shift+f exec gnome-terminal --hide-menubar -- ranger
+bindsym $mod+Shift+f exec termite --class "float-window" -e ranger
 # Bind google-chrome and firefox
 bindsym $mod+backslash exec google-chrome-stable
 bindsym $mod+Shift+backslash exec firefox
@@ -240,7 +241,7 @@ set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
 set $workspace6 "6: "
-set $workspace7 "7: "
+set $workspace7 "7: "
 set $workspace8 "8: "
 set $workspace9 "9: Projector"
 
@@ -276,14 +277,13 @@ assign [class="Evince"] $workspace3
 for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
 assign [class="Vmware"] $workspace5
 assign [class="Nautilus"] $workspace6
+assign [class="Deluge"] $workspace7
 
 # Assign workspace 10 for the projector
 workspace $workspace1 output eDP-1
 workspace $workspace2 output HDMI-1
 
 
-# adjust displays
-bindsym $mod+Shift+m exec bash ~/dotfiles/scripts/configure_xrandr.sh
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)

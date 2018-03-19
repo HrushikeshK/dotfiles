@@ -1,0 +1,40 @@
+* {
+    font: "Overpass 14";
+    background-color: #2E3440;
+    text-color: #D8DEE9;
+}
+
+#window {
+    anchor:     center;
+    location:   center;
+    width:      60%;
+    padding:    10px;
+    border: 1px;
+    border-color: #4C566A;
+}
+
+#inputbar {
+    margin: 0px 0px 5px 0px;
+}
+
+#prompt {
+    text-color: #5E81AC;
+}
+
+#entry {
+    text-color: #ECEFF4;
+}
+
+#listview {
+    layout:     vertical;
+    spacing:    5px;
+}
+
+#element {
+    padding: 2px;
+}
+
+#element.selected {
+    background-color: #4C566A;
+    text-color: #ECEFF4;
+}

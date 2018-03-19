@@ -1,0 +1,31 @@
+configuration {
+    width: 50;
+    lines: 12;
+    columns: 2;
+    font: "Overpass 14";
+    bw: 0;
+    padding: 10;
+    yoffset: 0;
+    xoffset: 0;
+    fixed-num-lines: true;
+    terminal: "termite -e";
+    case-sensitive: false;
+    matching: "fuzzy";
+    m: "-4";
+    line-margin: 0;
+    line-padding: 5;
+    separator-style: "none";
+    hide-scrollbar: true;
+    dpi: 0;
+    threads: 0;
+    scroll-method: 1;
+    click-to-exit: true;
+    show-match: true;
+    theme: "~/.config/rofi/theme.rasi";
+    kb-secondary-paste: "Control+v";
+    kb-remove-to-eol: "";
+    kb-accept-entry: "Return";
+    kb-accept-custom: "Control+Return";
+    kb-row-down: "Down,Control+j";
+    kb-row-up: "Up,Control+k";
+}
