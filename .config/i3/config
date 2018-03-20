@@ -359,7 +359,7 @@ bindsym $mod+Shift+p mode $primary_mode
 
 # -----------------------------------------
 
-exec_always --no-startup-id ~/.dotfiles/.config/polybar/launch_polybar.sh 
+exec --no-startup-id ~/.dotfiles/.config/polybar/launch_polybar.sh 
 
 #bar {
 #       status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err
