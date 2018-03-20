@@ -1,4 +1,4 @@
 UPDATES=$(checkupdates | wc -l)	
 
-echo "  ${UPDATES}"
+echo "  ${UPDATES}"
 exit 0

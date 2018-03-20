@@ -18,6 +18,7 @@
 * tmux
 * vim
 * i3-gaps
+* Polybar
 * ranger
 * compton
 * feh

@@ -7,13 +7,13 @@ browser = google-chrome-stable
 
 
 [colors]
-foreground = #839496
+#foreground = #839496
 foreground_bold = #eee8d5
 foreground_dim = #888888
 #background = #002b36
 #background = rgba(63, 63, 63, 0.8)
 background = rgba(31, 31, 31, 0.85)
-cursor = #93a1a1
+#cursor = #f0f0f0
 
 # black
 color0  = #151515
@@ -40,11 +40,11 @@ color5  = #aa759f
 color13 = #aa759f
 
 # cyan
-color6  = #37ada7
-color14 = #37ada7
+color6  = #1da59e
+color14 = #1da59e
 
 # white
-color7  = #dbdbdb
+color7  = #c0c0c0
 color15 = #e0e0e0
 
 # vim: ft=dosini cms=#%s

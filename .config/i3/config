@@ -10,7 +10,6 @@ set $mod Mod4
 
 #AUTOSTART STUFF
 exec_always --no-startup-id feh --bg-scale ~/.dotfiles/wallpaper.*
-#exec_always --no-startup-id  python3 ~/.config/i3/i3-autoname-workspaces.py
 exec_always --no-startup-id compton -b -f
 #exec --no-startup-id redshift 
 exec --no-startup-id xautolock -time 10 -locker "i3lock-multimonitor"
@@ -20,6 +19,7 @@ exec --no-startup-id termite
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 #exec --no-startup-id volumeicon
+
 
 #Font for window titles.
 font pango:FuraMono Nerd Font Medium 13
@@ -272,7 +272,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 # Assign workspaces
 assign [class="Firefox"] $workspace1
 assign [class="Google-chrome"] $workspace1
-assign [class="Tilix"] $workspace2
+assign [class="Termite"] $workspace2
 assign [class="Evince"] $workspace3
 for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
 assign [class="Vmware"] $workspace5
@@ -359,25 +359,27 @@ bindsym $mod+Shift+p mode $primary_mode
 
 # -----------------------------------------
 
-bar {
-       status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err
-       workspace_buttons yes
-       #output eDP-1-1
-       tray_output primary
-       mode dock
-       position top
-       height 18
-       font pango: Fira Mono Medium for Powerline, FontAwesome 11
-       colors {
-           background #131211
-           separator $primary
-           statusline $primary
-                    #         Border    Inner    Text
-           focused_workspace $primary $primary $back
-           active_workspace #131211 #131211 $primary
-           inactive_workspace #131211 #131211 $primary
-           urgent_workspace #CC241D #CC241D #EBDBB2
-       }
-    }
+exec_always --no-startup-id ~/.dotfiles/.config/polybar/launch_polybar.sh 
+
+#bar {
+#       status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err
+#       workspace_buttons yes
+#       #output eDP-1-1
+#       tray_output primary
+#       mode dock
+#       position top
+#       height 18
+#       font pango: Fira Mono Medium for Powerline, FontAwesome 11
+#       colors {
+#           background #131211
+#           separator $primary
+#           statusline $primary
+#                    #         Border    Inner    Text
+#           focused_workspace $primary $primary $back
+#           active_workspace #131211 #131211 $primary
+#           inactive_workspace #131211 #131211 $primary
+#           urgent_workspace #CC241D #CC241D #EBDBB2
+#       }
+#    }
 # vim:filetype=i3
 
