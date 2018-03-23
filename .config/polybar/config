@@ -59,7 +59,7 @@ font-2 = FuraMono Nerd Font Medium:size=11
 
 modules-left = i3
 modules-center = custom-date custom-time
-modules-right = wlan checkupdates filesystem custom-volume memory cpu battery temperature brightness screen-lock
+modules-right = wlan checkupdates custom-disk custom-volume memory cpu battery custom-temperature brightness screen-lock
 
 tray-position = right
 tray-padding = 2
@@ -133,7 +133,7 @@ label-visible = %name%
 ;label-visible-underline = ${self.label-focused-background}
 label-visible-padding = ${self.label-focused-padding}
 
-label-urgent = %name%!
+label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
@@ -444,6 +444,21 @@ scroll-up = ~/.dotfiles/scripts/i3blocks/volume 4
 scroll-down = ~/.dotfiles/scripts/i3blocks/volume 5
 interval = 1
 format-underline = #7700ef
+
+[module/custom-disk]
+type = custom/script
+exec = ~/.dotfiles/scripts/i3blocks/disk | tail -n 1
+click-left = gnome-system-monitor
+interval = 90
+format-underline = #0091f9
+label =   %output% 
+
+[module/custom-temperature]
+type = custom/script
+exec = ~/.dotfiles/scripts/i3blocks/temperature | head -n 1
+interval = 1
+format-underline = #f50a4d
+label = %output%
 
 [settings]
 screenchange-reload = true
