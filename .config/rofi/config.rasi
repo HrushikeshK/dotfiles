@@ -2,7 +2,7 @@ configuration {
     width: 50;
     lines: 12;
     columns: 2;
-    font: "Overpass 14";
+    font: "FuraMono Nerd Font Medium 14";
     bw: 0;
     padding: 10;
     yoffset: 0;
@@ -21,7 +21,7 @@ configuration {
     scroll-method: 1;
     click-to-exit: true;
     show-match: true;
-    theme: "~/.config/rofi/theme.rasi";
+    theme: "Adapta-Nokto";
     kb-secondary-paste: "Control+v";
     kb-remove-to-eol: "";
     kb-accept-entry: "Return";
