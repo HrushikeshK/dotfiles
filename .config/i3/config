@@ -123,7 +123,7 @@ for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move d
 bindsym $mod+Shift+q kill
 
 # start rofi (program launcher)
-bindsym $mod+d exec --no-startup-id rofi -monitor -1 -show run
+bindsym $mod+d exec --no-startup-id rofi -monitor -4 -show run
 # start rofi (window switcher)
 bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
 
@@ -359,7 +359,7 @@ bindsym $mod+Shift+p mode $primary_mode
 
 # -----------------------------------------
 
-exec --no-startup-id ~/.dotfiles/.config/polybar/launch_polybar.sh 
+exec_always --no-startup-id ~/.dotfiles/.config/polybar/launch_polybar.sh 
 
 #bar {
 #       status_command i3blocks -c ~/.config/i3/i3blocks.conf 2> ~/.config/i3/.i3blocks.err
