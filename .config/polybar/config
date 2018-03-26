@@ -438,8 +438,8 @@ click-left = ~/.dotfiles/.config/i3/i3lock-multimonitor/lock
 [module/custom-volume]
 type = custom/script
 exec = ~/.dotfiles/scripts/i3blocks/volume
-click-left = pavucontrol
-click-right = ~/.dotfiles/scripts/i3blocks/volume 3
+click-right = pavucontrol
+click-left = ~/.dotfiles/scripts/i3blocks/volume 3
 scroll-up = ~/.dotfiles/scripts/i3blocks/volume 4
 scroll-down = ~/.dotfiles/scripts/i3blocks/volume 5
 interval = 1

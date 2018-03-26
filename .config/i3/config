@@ -216,6 +216,9 @@ bindsym $mod+Shift+f exec termite --class "float-window" -e ranger
 # Bind google-chrome and firefox
 bindsym $mod+backslash exec google-chrome-stable
 bindsym $mod+Shift+backslash exec firefox
+# Mount/unmount partitions
+bindsym $mod+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh mount"
+bindsym $mod+Shift+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh unmount"
 
 
 
@@ -241,9 +244,9 @@ set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
 set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: Projector"
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
@@ -257,6 +260,7 @@ bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 
 bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab exec "~/.dotfiles/scripts/switch_workspace_dmenu.sh"
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -277,7 +281,8 @@ assign [class="Evince"] $workspace3
 for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
 assign [class="Vmware"] $workspace5
 assign [class="Nautilus"] $workspace6
-assign [class="Deluge"] $workspace7
+assign [class="Subl3"] $workspace7
+assign [class="Deluge"] $workspace8
 
 # Assign workspace 10 for the projector
 workspace $workspace1 output eDP-1
