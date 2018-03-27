@@ -282,6 +282,7 @@ for_window [class="Spotify"] move to workspace $workspace4      #Refer to https:
 assign [class="Vmware"] $workspace5
 assign [class="Nautilus"] $workspace6
 assign [class="Subl3"] $workspace7
+assign [class="vlc"] $workspace8
 assign [class="Deluge"] $workspace8
 
 # Assign workspace 10 for the projector
