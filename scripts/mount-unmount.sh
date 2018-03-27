@@ -21,7 +21,10 @@ fs-mount() {
     echo -n "${BOLD}${CYAN}Enter the Partition to mount (without /dev/):${NONE} "
     read fs
 
-    if [ "$(df | grep "$fs")"]; then
+    if [ -z "$fs" ]; then
+	echo "${RED}Invalid input.${NONE}"
+	exit 0
+    elif [ "$(df | grep "$fs")" ]; then
 	echo "${BOLD}${RED}/dev/$fs is already mounted${NONE}"
 	echo ""
     else
@@ -42,7 +45,10 @@ fs-unmount() {
     echo -n "${BOLD}${CYAN}Enter the partition to unmount (without /dev/):${NONE} "
     read fs
 
-    if [ "$(df | grep "$fs")" ]; then 
+    if [ -z "$fs" ];then
+	echo "${RED}Invalid input.${NONE}"
+	exit 0
+    elif [ "$(df | grep "$fs")" ]; then 
 	udisksctl unmount -b "/dev/$fs"
 	echo "${BOLD}${GREEN}/dev/$fs unmounted...${NONE}"
 	echo ""
