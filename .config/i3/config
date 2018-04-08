@@ -125,7 +125,7 @@ bindsym $mod+Shift+q kill
 # start rofi (program launcher)
 bindsym $mod+d exec --no-startup-id rofi -monitor -4 -show run
 # start rofi (window switcher)
-bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
+bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -4 -show window
 
 #use "xmodmap -pke" to get list of special keys
 #custom special key fixes
@@ -214,7 +214,7 @@ bindsym --release $mod+Shift+x exec --no-startup-id "bash ~/.dotfiles/scripts/t.
 # Bind ranger
 bindsym $mod+Shift+f exec termite --class "float-window" -e ranger
 # Bind google-chrome and firefox
-bindsym $mod+backslash exec google-chrome-stable
+bindsym $mod+backslash exec google-chrome-unstable
 bindsym $mod+Shift+backslash exec firefox
 # Mount/unmount partitions
 bindsym $mod+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh mount"

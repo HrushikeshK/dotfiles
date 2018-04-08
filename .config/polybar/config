@@ -47,7 +47,7 @@ line-color = #f00
 border-size = 2
 border-color = #cc000000
 
-padding-left = 0
+padding-left = 1
 padding-right = 1
 
 module-margin-left = 1
@@ -57,9 +57,9 @@ font-0 = Fira Mono Medium for Powerline:size=11
 font-1 = FontAwesome:size=11
 font-2 = FuraMono Nerd Font Medium:size=11
 
-modules-left = i3
-modules-center = custom-date custom-time
-modules-right = wlan checkupdates custom-disk custom-volume memory cpu battery custom-temperature brightness screen-lock powermenu
+modules-left = custom-temperature memory cpu checkupdates wlan
+modules-center = i3 
+modules-right = custom-disk custom-volume battery brightness custom-date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -242,7 +242,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp62s0u1u1
+interface = enp62s0u1u2
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -385,10 +385,10 @@ menu-0-1 = ""
 menu-0-1-exec = menu-open-2
 menu-0-2 = ""
 menu-0-2-exec = menu-open-3
-#menu-0-3 = ""
-#menu-0-3-exec = menu-open-4
-menu-0-3 = ""
+menu-0-3 = ""
 menu-0-3-exec = menu-open-4
+menu-0-4 = ""
+menu-0-4-exec = menu-open-5
 
 menu-1-0 = ""
 menu-1-0-exec = i3exit suspend
@@ -399,11 +399,11 @@ menu-2-0-exec = i3exit reboot
 menu-3-0 = ""
 menu-3-0-exec = i3exit shutdown
 
-#menu-4-0 = ""
-#menu-4-0-exec = i3exit lock
+menu-4-0 = ""
+menu-4-0-exec = i3exit lock
 
-menu-4-0 = ""
-menu-4-0-exec = i3-msg exit
+menu-5-0 = ""
+menu-5-0-exec = i3-msg exit
 
 [module/checkupdates]
 type = custom/script
@@ -416,9 +416,10 @@ click-right = termite --class="float-window" -e "$HOME/.dotfiles/scripts/arch-sh
 
 [module/custom-date]
 type = custom/script
-exec = date '+%d/%m/%y'
-interval = 300
-label =  %output%
+exec = echo "$(date '+%d/%m/%y') | $(date '+%H:%M')"
+interval = 30
+format-underline = #028731
+label =  %output%
 click-left = gsimplecal
 
 [module/custom-time]
@@ -430,6 +431,7 @@ label =  %output%
 [module/brightness]
 type = custom/script
 exec = ~/.dotfiles/scripts/i3blocks/brightness
+format-underline = #5ed315
 label =  %output%
 scroll-up = light -A 5
 scroll-down = light -U 5
@@ -462,7 +464,7 @@ label =   %output%
 type = custom/script
 exec = ~/.dotfiles/scripts/i3blocks/temperature | head -n 1
 interval = 1
-format-underline = #f50a4d
+format-underline = #e59719
 label = %output%
 
 [settings]
