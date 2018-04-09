@@ -37,6 +37,8 @@ height = 22
 ;offset-y = 1%
 radius = 6.0
 fixed-center = true
+dim-value = 0.6
+wm-name = i3
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -53,13 +55,13 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Fira Mono Medium for Powerline:size=11
-font-1 = FontAwesome:size=11
-font-2 = FuraMono Nerd Font Medium:size=11
+font-0 = "Fira Mono Medium for Powerline:size=11;2"
+font-1 = "FontAwesome:size=11;2"
+font-2 = "FuraMono Nerd Font Medium:size=11"
 
-modules-left = custom-temperature memory cpu checkupdates wlan
+modules-left = custom-temperature memory cpu checkupdates wlan 
 modules-center = i3 
-modules-right = custom-disk custom-volume battery brightness custom-date powermenu
+modules-right = eth custom-disk custom-volume battery brightness custom-date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -68,7 +70,6 @@ tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
-
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
@@ -76,6 +77,14 @@ tray-background = #0063ff
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
+
+; Requires polybar to be built with xcursor support (xcb-util-cursor)
+; Possible values are:
+; - default   : The default pointer as before, can also be an empty string (default)
+; - pointer   : Typically in the form of a hand
+; - ns-resize : Up and down arrows, can be used to indicate scrolling
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
@@ -224,14 +233,14 @@ udspeed-minwidth = 1
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected =  %upspeed% %downspeed% 
+label-connected =   %upspeed% %downspeed% 
 label-connected-foreground = #eefafafa
 
 format-disconnected = <label-disconnected>
 ;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -246,12 +255,13 @@ interface = enp62s0u1u2
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+;label-connected = %local_ip%
+label-connected =  %upspeed% %downspeed%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
+;format-disconnected =
+format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
@@ -378,6 +388,7 @@ ramp-foreground = ${colors.foreground-alt}
 type = custom/menu
 #format-padding = 1
 label-open = ""
+label-close = "x"
 label-separator = "  "
 menu-0-0 = ""
 menu-0-0-exec = menu-open-1
@@ -411,15 +422,16 @@ exec = checkupdates | wc -l
 interval = 90
 label =  %output%
 format-underline = #028731
-click-left = checkupdates | wc -l
-click-right = termite --class="float-window" -e "$HOME/.dotfiles/scripts/arch-show-updates.sh"
+click-right = checkupdates | wc -l
+click-left = termite --class="float-window" -e "$HOME/.dotfiles/scripts/arch-show-updates.sh"
 
 [module/custom-date]
 type = custom/script
-exec = echo "$(date '+%d/%m/%y') | $(date '+%H:%M')"
+exec = echo "$(date '+%a %d/%m/%y') | $(date '+%H:%M')"
 interval = 30
 format-underline = #028731
 label =  %output%
+cursor-click = pointer
 click-left = gsimplecal
 
 [module/custom-time]
@@ -435,7 +447,7 @@ format-underline = #5ed315
 label =  %output%
 scroll-up = light -A 5
 scroll-down = light -U 5
-interval = 1
+interval = 0.5
 
 [module/screen-lock]
 type = custom/script
@@ -449,7 +461,7 @@ click-right = pavucontrol
 click-left = ~/.dotfiles/scripts/i3blocks/volume 3
 scroll-up = ~/.dotfiles/scripts/i3blocks/volume 4
 scroll-down = ~/.dotfiles/scripts/i3blocks/volume 5
-interval = 1
+interval = 0.5
 format-underline = #7700ef
 
 [module/custom-disk]
