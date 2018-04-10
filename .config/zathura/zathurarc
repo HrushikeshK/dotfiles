@@ -1,0 +1,106 @@
+# zathurarc-dark
+
+#set font                        "inconsolata 9"
+# set default-bg                  "#151515" #00
+# set default-fg                  "#202020" #01
+#
+# set statusbar-fg                "#B0B0B0" #04
+# set statusbar-bg                "#202020" #01
+#
+# set inputbar-bg                 "#151515" #00 currently not used
+# set inputbar-fg                 "#303030" #02
+#
+# set notification-error-bg       "#AC4142" #08
+# set notification-error-fg       "#151515" #00
+#
+# set notification-warning-bg     "#AC4142" #08
+# set notification-warning-fg     "#151515" #00
+#
+# set highlight-color             "#F4BF75" #0A
+# set highlight-active-color      "#6A9FB5" #0D
+#
+# set completion-highlight-fg     "#303030" #02
+# set completion-highlight-bg     "#75B5AA" #0C
+#
+# set completion-bg               "#303030" #02
+# set completion-fg               "#75B5AA" #0C
+#
+# set notification-bg             "#90A959" #0B
+# set notification-fg             "#151515" #00
+#
+# set recolor-lightcolor          "#151515" #00
+# set recolor-darkcolor           "#E0E0E0" #06
+# set recolor                     "true"
+#
+## setting recolor-keep true will keep any color your pdf has.
+## if it is false, it'll just be black and white
+#set recolor-keephue             "true"
+
+# Rest of your configs go here:
+
+set selection-clipboard clipboard
+set zoom-step 10
+set scroll-step 40
+set scroll-hstep 5
+set first-page-column 1:2:1:2:1:2
+set pages-per-row 2
+set page-padding 2
+set advance-pages-per-row true
+set render-loading true
+map <C-i> zoom in
+map <C-o> zoom out
+#map f feedkeys "133zz"
+#map f zoom specific 133
+map u feedkeys ":exec xdotool key 1 3 3 z z"<Return>
+set guioptions  ""
+set n-completion-items 25
+set window-title-basename true
+set recolor-keephue true
+set scroll-page-aware true
+set adjust-open best-fit
+set smooth-scroll true
+set statusbar-home-tilde true
+set incremental-search true
+map w adjust_window best-fit
+map [normal] a focus_inputbar ":bmark "
+map [normal] b focus_inputbar ":blist "
+map [normal] d focus_inputbar ":bdelete "
+map [normal] l jumplist backward
+map [normal] L jumplist forward
+map <C-1> feedkeys ":set pages-per-row 1"<Return>
+map <C-2> feedkeys ":set pages-per-row 2"<Return>
+map <C-3> feedkeys ":set pages-per-row 3"<Return>
+map <C-4> feedkeys ":set pages-per-row 4"<Return>
+map t toggle_page_mode
+map T feedkeys ":set pages-per-row "
+
+#set font "FuraMono Nerd Font Medium 12"
+set default-bg "#151515"
+set default-fg "#E0E0E0"
+
+set statusbar-fg "#B0B0B0"
+set statusbar-bg "#202020"
+
+set inputbar-bg "#151515"
+set inputbar-fg "#FFFFFF"
+
+set notification-error-bg "#AC4142"
+set notification-error-fg "#151515"
+
+set notification-warning-bg "#AC4142"
+set notification-warning-fg "#151515"
+
+set highlight-color "#F4BF75"
+set highlight-active-color "#6A9FB5"
+
+set completion-highlight-fg "#303030"
+set completion-highlight-bg "#75B5AA"
+
+set completion-bg "#303030"
+set completion-fg "#75B5AA"
+
+set notification-bg "#90A959"
+set notification-fg "#151515"
+
+set recolor-lightcolor "#151515"
+set recolor-darkcolor "#E0E0E0"
