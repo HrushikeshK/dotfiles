@@ -16,6 +16,7 @@ exec --no-startup-id xautolock -time 10 -locker "i3lock-multimonitor"
 exec --no-startup-id xset dpms 0 0 1200
 exec --no-startup-id xset s 1200
 exec --no-startup-id termite
+exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 #exec --no-startup-id volumeicon
@@ -134,9 +135,9 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -4 -show window
 bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
 bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
 bindsym XF86AudioMute exec amixer sset 'Master' toggle
-bindsym $mod+equal exec pulseaudio-ctl up
-bindsym $mod+minus exec pulseaudio-ctl down
-bindsym $mod+0 exec pulseaudio-ctl mute
+bindsym $mod+equal exec amixer sset 'Master' 5%+
+bindsym $mod+minus exec amixer sset 'Master' 5%-
+bindsym $mod+0 exec amixer sset 'Master' toggle
 
 #cmus controls
 bindsym $mod+p exec cmus-remote --pause
@@ -151,7 +152,7 @@ bindsym $mod+Shift+plus exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86MonBrightnessUp exec light -A 5
 
-bindsym $mod+Ctrl+Escape exec i3lock-multimonitor
+bindsym $mod+Escape exec i3lock-multimonitor
 bindsym XF86Sleep exec i3lock-multimonitor && echo mem > /sys/power/state
 bindsym $mod+grave exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
 bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
@@ -281,6 +282,7 @@ assign [class="Firefox"] $workspace1
 assign [class="Google-chrome"] $workspace1
 assign [class="Termite"] $workspace2
 assign [class="Evince"] $workspace3
+assign [class="Zathura"] $workspace3
 for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
 assign [class="Vmware"] $workspace5
 assign [class="Nautilus"] $workspace6
