@@ -11,15 +11,16 @@ set $mod Mod4
 #AUTOSTART STUFF
 exec_always --no-startup-id feh --bg-scale ~/.dotfiles/wallpaper.*
 exec_always --no-startup-id compton -b -f
-#exec --no-startup-id redshift 
-exec --no-startup-id xautolock -time 10 -locker "i3lock-multimonitor"
-exec --no-startup-id xset dpms 0 0 1200
-exec --no-startup-id xset s 1200
+exec --no-startup-id redshift 
+exec --no-startup-id xautolock -time 30 -locker "~/.dotfiles/scripts/i3exit suspend" -detectsleep -notify 30 -notifier "dunstify -u critical 'Locking Screen and suspend in 30 seconds'" 
+exec --no-startup-id xset dpms 0 600 0
 exec --no-startup-id termite
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 #exec --no-startup-id volumeicon
+# Open Workspace 2
+exec --no-startup-id i3-msg 'workspace $workspace2'
 
 
 #Font for window titles.
@@ -105,7 +106,7 @@ mode "$mode_gaps_outer" {
 #for_window [class="(?i)feh"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)qemu-system-x86_64"] floating enable
-#for_window [class="VirtualBox"] floating enable
+#for_window [class="VirtualBox Manager"] floating enable
 #for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -117,7 +118,9 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [class="float-window"] floating enable
 for_window [class="Gnome-terminal"] floating enable
-for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 18 px      # 18 is the height of i3blocks
+for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 22 px      # 22 is the height of polybar
+# File Manager
+for_window [class="Nautilus"] floating enable 
 
 
 # kill focused window
@@ -132,12 +135,12 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -4 -show window
 #custom special key fixes
 
 #audio controls
-bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
-bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
-bindsym XF86AudioMute exec amixer sset 'Master' toggle
-bindsym $mod+equal exec amixer sset 'Master' 5%+
-bindsym $mod+minus exec amixer sset 'Master' 5%-
-bindsym $mod+0 exec amixer sset 'Master' toggle
+bindsym XF86AudioRaiseVolume exec ~/.dotfiles/scripts/i3blocks/volume.sh up
+bindsym XF86AudioLowerVolume exec ~/.dotfiles/scripts/i3blocks/volume.sh down
+bindsym XF86AudioMute exec ~/.dotfiles/scripts/i3blocks/volume.sh mute
+bindsym $mod+equal exec ~/.dotfiles/scripts/i3blocks/volume.sh up
+bindsym $mod+minus exec ~/.dotfiles/scripts/i3blocks/volume.sh down
+bindsym $mod+0 exec ~/.dotfiles/scripts/i3blocks/volume.sh mute
 
 #cmus controls
 bindsym $mod+p exec cmus-remote --pause
@@ -145,16 +148,16 @@ bindsym $mod+bracketleft exec cmus-remote --prev
 bindsym $mod+bracketright exec cmus-remote --next
 
 #backlight controls (laptop monitor)
-bindsym $mod+Shift+minus exec light -U 5
-bindsym $mod+Shift+plus exec light -A 5
+bindsym $mod+Shift+minus exec ~/.dotfiles/scripts/i3blocks/brightness.sh down
+bindsym $mod+Shift+plus exec ~/.dotfiles/scripts/i3blocks/brightness.sh up
 
 # backlight controls (actual buttons on laptop)
-bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec ~/.dotfiles/scripts/i3blocks/brightness.sh down
+bindsym XF86MonBrightnessUp exec ~/.dotfiles/scripts/i3blocks/brightness.sh up
 
-bindsym $mod+Escape exec i3lock-multimonitor
-bindsym XF86Sleep exec i3lock-multimonitor && echo mem > /sys/power/state
-bindsym $mod+grave exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
+bindsym $mod+Escape exec "~/.dotfiles/scripts/i3exit lock"
+bindsym XF86Sleep exec "~/.dotfiles/scripts/i3exit suspend"
+bindsym $mod+grave exec ~/.dotfiles/scripts/toggle_touchpad.sh
 bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
 bindsym --release $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
 bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
@@ -213,9 +216,9 @@ bindsym $mod+Shift+t exec  termite --class "float-window"
 # Slop for custom size terminal
 bindsym --release $mod+Shift+x exec --no-startup-id "bash ~/.dotfiles/scripts/t.sh"
 # Bind ranger
-bindsym $mod+Shift+f exec termite --class "float-window" -e ranger
+bindsym $mod+Shift+f exec termite --class "float-window" -e ~/.dotfiles/scripts/start_ranger.sh 
 # Bind google-chrome and firefox
-bindsym $mod+backslash exec google-chrome-unstable
+bindsym $mod+backslash exec google-chrome-stable
 bindsym $mod+Shift+backslash exec firefox
 # Mount/unmount partitions
 bindsym $mod+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh mount"
@@ -247,10 +250,10 @@ set $workspace2 "2: "
 set $workspace3 "3: "
 set $workspace4 "4: "
 set $workspace5 "5: "
-set $workspace6 "6: "
+set $workspace6 "6: "
 set $workspace7 "7: "
 set $workspace8 "8: "
-set $workspace9 "9: "
+set $workspace9 "9: MISC"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
@@ -277,20 +280,44 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 
-# Assign workspaces
+## Assign workspaces
+
+# Browsers
 assign [class="Firefox"] $workspace1
 assign [class="Google-chrome"] $workspace1
+
+# Terminals
 assign [class="Termite"] $workspace2
+
+# PDF viewers
 assign [class="Evince"] $workspace3
 assign [class="Zathura"] $workspace3
+
+# Audio/Video
 for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
+assign [class="vlc"] $workspace4
+
+# VMs
 assign [class="Vmware"] $workspace5
-assign [class="Nautilus"] $workspace6
+assign [class="VirtualBox Machine"] $workspace5 
+assign [class="VirtualBox Manager"] $workspace5
+
+# Conversations
+assign [class="Slack"] $workspace6
+assign [class="Protonmail Desktop"] $workspace6
+
+# Editors
 assign [class="Subl3"] $workspace7
-assign [class="vlc"] $workspace8
+assign [class="TeXstudio"] $workspace7
+assign [class="jetbrains-studio"] $workspace7
+
+# Torrent Client 
 assign [class="Deluge"] $workspace8
 
-# Assign workspace 10 for the projector
+# Miscellaneous
+
+
+# First workspace on Laptop monitor while second on another monitor (if connected)
 workspace $workspace1 output eDP-1
 workspace $workspace2 output HDMI-1
 

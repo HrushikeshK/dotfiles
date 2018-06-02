@@ -17,9 +17,15 @@ function send_notification {
     volume=`get_volume`
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
-    bar=$(seq -s "─" $(($volume / 5)) | sed 's/[0-9]//g')
+    bar=$(seq -s "━" $(($volume / 5)) | sed 's/[0-9]//g')
     # Send the notification
-    dunstify -t 800 -r 2593 -u normal "Volume" "    $bar"
+    if [ $(amixer -c 0 cget numid=2,iface=CARD | awk -F"=" 'NR == 3 {print $2;}' | cut -d',' -f1) == 'on' ]; then
+      dunstify -t 800 -r 2593 -u low " $(get_volume)  $bar"
+    elif [ $(get_volume) == '0' ]; then
+      dunstify -t 800 -r 2593 -u low " $(get_volume)  $bar"
+    else
+      dunstify -t 800 -r 2593 -u low " $(get_volume)  $bar"
+    fi
 }
 
 case $1 in
@@ -39,7 +45,7 @@ case $1 in
     	# Toggle mute
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
-	    dunstify -t 800 -r 2593 -u normal "Mute"
+	    dunstify -t 800 -r 2593 -u low " Mute"
 	else
 	    send_notification
 	fi
@@ -50,12 +56,14 @@ esac
 if [ $(amixer -c 0 cget numid=2,iface=CARD | awk -F"=" 'NR == 3 {print $2;}' | cut -d',' -f1) == 'on' ]; then
   echo -n " "
 else
-  if [ $(get_volume) == "0" ]; then 
-    echo -n " "
-  elif [ $(get_volume) == "MUTE" ]; then
-    echo -n " "
+    if is_mute ; then
+      echo -n " MUTE"
+      exit
+    elif [ $(get_volume) == "0" ]; then 
+      echo -n " "
   else
     echo -n " "
   fi
 fi
+
 echo "$(get_volume)%"

@@ -6,7 +6,6 @@ export ZSH=${HOME}/.oh-my-zsh
 # export 256 colors
 export TERM="xterm-256color"
 
-
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -181,10 +180,13 @@ autoload -U compinit && compinit
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export GEM_HOME=$HOME/.gem
 
+
 # Create at least one tmux session
 if (! tmux has-session -t "misc" 2> /dev/null); then
     tmux new-session -s misc    
 fi
+
+
 
 # Tilix Config
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then

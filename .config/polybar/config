@@ -61,7 +61,7 @@ font-2 = "FuraMono Nerd Font Medium:size=11"
 
 modules-left = custom-temperature memory cpu checkupdates wlan 
 modules-center = i3 
-modules-right = eth custom-disk custom-volume battery brightness custom-date powermenu
+modules-right = custom-disk custom-volume battery brightness custom-date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -203,7 +203,7 @@ type = internal/cpu
 interval = 2
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label = CPU %percentage%%
+label = "%{A1:gnome-system-monitor:}CPU %percentage%%%{A}"
 
 [module/memory]
 type = internal/memory
@@ -212,7 +212,7 @@ format-prefix = "  "
 ;format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 format = <label>
-label = %percentage_used%%
+label = "%{A1:gnome-system-monitor:}%percentage_used%%%{A}"
 
 ; Only applies if <ramp-used> is used
 ramp-used-0 = ▁
@@ -254,10 +254,10 @@ interface = enp62s0u1u2
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+;format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 ;label-connected = %local_ip%
-label-connected =  %upspeed% %downspeed%
+label-connected =  %upspeed% %downspeed%
 
 ;format-disconnected =
 format-disconnected = <label-disconnected>
@@ -330,7 +330,6 @@ type = internal/battery
 battery = BAT0
 adapter = ADP1
 full-at = 98
-
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
 
@@ -346,6 +345,9 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
+
+label-discharging = "%{A1:/usr/bin/dunstify "$(acpi -b)":}%percentage%%%{A}"
+label-charging = "%{A1:/usr/bin/dunstify "$(acpi -b)":}%percentage%%%{A}"
 
 ;ramp-capacity-0 = 
 ;ramp-capacity-1 = 
@@ -387,7 +389,7 @@ ramp-foreground = ${colors.foreground-alt}
 type = custom/menu
 #format-padding = 1
 label-open = ""
-label-close = "x"
+label-close = "X"
 label-separator = "  "
 menu-0-0 = ""
 menu-0-0-exec = menu-open-1
@@ -441,11 +443,11 @@ label =  %output%
 
 [module/brightness]
 type = custom/script
-exec = ~/.dotfiles/scripts/i3blocks/brightness
+exec = ~/.dotfiles/scripts/i3blocks/brightness.sh
 format-underline = #5ed315
 label =  %output%
-scroll-up = light -A 5
-scroll-down = light -U 5
+scroll-up = ~/.dotfiles/scripts/i3blocks/brightness.sh up
+scroll-down = ~/.dotfiles/scripts/i3blocks/brightness.sh down
 interval = 0.5
 
 [module/screen-lock]

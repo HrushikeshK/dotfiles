@@ -1,6 +1,7 @@
 syntax enable
 set tabstop=4
 set softtabstop=4
+set shiftwidth=4
 set number
 filetype indent on
 set showmatch
@@ -15,6 +16,8 @@ set wildmenu
 set wildignore=*.swp,*.swo,*.class
 " Make tabs into spaces (set by tabstop)
 set expandtab
+" Not for make
+autocmd FileType make setlocal noexpandtab
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 " Optimize for fast terminal connections
@@ -96,7 +99,7 @@ Plug 'tpope/vim-surround' " Surround strings with stuff
 
 " markdown
 Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' } " Open markdown files in Marked.app - mapped to <leader>m
-Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
+" Plug 'tpope/vim-markdown', { 'for': 'markdown' } " markdown support
 
 " Make sure you use single quotes
 " Syntastic. Not sure if it'll work
@@ -104,6 +107,7 @@ Plug 'vim-syntastic/syntastic'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+
 
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
@@ -148,7 +152,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " Color scheme
@@ -160,5 +164,5 @@ let g:oceanic_next_terminal_italic = 1
 let g:airline_powerline_fonts = 1
 colorscheme OceanicNext
 set background=dark " for the dark version
-" set background=light " for the light version
+"set background=light " for the light version
 set termguicolors
