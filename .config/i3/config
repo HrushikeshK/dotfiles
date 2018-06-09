@@ -119,8 +119,7 @@ for_window [window_type="menu"] floating enable
 for_window [class="float-window"] floating enable
 for_window [class="Gnome-terminal"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 22 px      # 22 is the height of polybar
-# File Manager
-for_window [class="Nautilus"] floating enable 
+ 
 
 
 # kill focused window
@@ -223,37 +222,21 @@ bindsym $mod+Shift+backslash exec firefox
 # Mount/unmount partitions
 bindsym $mod+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh mount"
 bindsym $mod+Shift+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh unmount"
+# Weechat IRC
+bindsym $mod+Shift+w exec termite --class="termite-weechat" -e weechat
 
 
-
-# Mode to move a container to different workspace
-set $mode_move_to_workspace "moveto_ws"
-mode $mode_move_to_workspace {
-    bindsym 1 move container to workspace $workspace1; mode "default"
-    bindsym 2 move container to workspace $workspace2; mode "default"
-    bindsym 3 move container to workspace $workspace3; mode "default"
-    bindsym 4 move container to workspace $workspace4; mode "default"
-    bindsym 5 move container to workspace $workspace5; mode "default"
-    bindsym 6 move container to workspace $workspace6; mode "default"
-    bindsym 7 move container to workspace $workspace7; mode "default"
-    bindsym 8 move container to workspace $workspace8; mode "default"
-    bindsym 9 move container to workspace $workspace9; mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+shift+w mode $mode_move_to_workspace
 # --------------------------------------------
 
 set $workspace1 "1:  "
 set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
+set $workspace3 "3: "
+set $workspace4 "4: "
 set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: MISC"
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
@@ -289,13 +272,16 @@ assign [class="Google-chrome"] $workspace1
 # Terminals
 assign [class="Termite"] $workspace2
 
+# File Manager
+assign [class="Nautilus"] $workspace3
+
 # PDF viewers
-assign [class="Evince"] $workspace3
-assign [class="Zathura"] $workspace3
+assign [class="Evince"] $workspace4
+assign [class="Zathura"] $workspace4
 
 # Audio/Video
-for_window [class="Spotify"] move to workspace $workspace4      #Refer to https://github.com/i3/i3/issues/2060
-assign [class="vlc"] $workspace4
+for_window [class="Spotify"] move to workspace $workspace6      #Refer to https://github.com/i3/i3/issues/2060
+assign [class="vlc"] $workspace6
 
 # VMs
 assign [class="Vmware"] $workspace5
@@ -303,8 +289,9 @@ assign [class="VirtualBox Machine"] $workspace5
 assign [class="VirtualBox Manager"] $workspace5
 
 # Conversations
-assign [class="Slack"] $workspace6
-assign [class="Protonmail Desktop"] $workspace6
+assign [class="Slack"] $workspace7
+assign [class="Protonmail Desktop"] $workspace7
+assign [class="termite-weechat"] $workspace7
 
 # Editors
 assign [class="Subl3"] $workspace7

@@ -61,7 +61,7 @@ font-2 = "FuraMono Nerd Font Medium:size=11"
 
 modules-left = custom-temperature memory cpu checkupdates wlan 
 modules-center = i3 
-modules-right = custom-disk custom-volume battery brightness custom-date powermenu
+modules-right = eth custom-disk custom-volume battery brightness custom-date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -419,11 +419,13 @@ menu-5-0-exec = i3-msg exit
 
 [module/checkupdates]
 type = custom/script
-exec = checkupdates | wc -l
+exec = $HOME/.dotfiles/scripts/i3blocks/arch-updates.sh 
+#exec = checkupdates | wc -l
 interval = 90
-label =  %output%
+#label =  %output%
+label = %output%
 format-underline = #028731
-click-right = checkupdates | wc -l
+click-right = $HOME/.dotfiles/scripts/i3blocks/arch-updates.sh
 click-left = termite --class="float-window" -e "$HOME/.dotfiles/scripts/arch-show-updates.sh"
 
 [module/custom-date]

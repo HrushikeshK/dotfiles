@@ -1,5 +1,11 @@
 #!/bin/bash
 
-checkupdates
+update_val="$(checkupdates)"
 
-read x
+if echo $update_val | head -n 1 | grep "ERROR"; then 
+    continue 
+else 
+    echo "$update_val" 
+    read x
+fi
+
