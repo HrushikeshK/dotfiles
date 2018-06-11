@@ -222,9 +222,6 @@ bindsym $mod+Shift+backslash exec firefox
 # Mount/unmount partitions
 bindsym $mod+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh mount"
 bindsym $mod+Shift+m exec termite --class="float-window" -e "$HOME/.dotfiles/scripts/mount-unmount.sh unmount"
-# Weechat IRC
-bindsym $mod+Shift+w exec termite --class="termite-weechat" -e weechat
-
 
 # --------------------------------------------
 
@@ -292,11 +289,12 @@ assign [class="VirtualBox Manager"] $workspace5
 assign [class="Slack"] $workspace7
 assign [class="Protonmail Desktop"] $workspace7
 assign [class="termite-weechat"] $workspace7
+assign [class="termite-reddit"] $workspace7
 
 # Editors
-assign [class="Subl3"] $workspace7
-assign [class="TeXstudio"] $workspace7
-assign [class="jetbrains-studio"] $workspace7
+assign [class="Subl3"] $workspace8
+assign [class="TeXstudio"] $workspace8
+assign [class="jetbrains-studio"] $workspace8
 
 # Torrent Client 
 assign [class="Deluge"] $workspace8
