@@ -59,7 +59,7 @@ font-0 = "Fira Mono Medium for Powerline:size=11;2"
 font-1 = "FontAwesome:size=11;2"
 font-2 = "FuraMono Nerd Font Medium:size=11"
 
-modules-left = custom-temperature memory cpu checkupdates wlan 
+modules-left = custom-temperature memory cpu checkupdates wlan custom-spotify
 modules-center = i3 
 modules-right = eth custom-disk custom-volume battery brightness custom-date powermenu
 
@@ -237,9 +237,9 @@ label-connected-foreground = #eefafafa
 
 format-disconnected = <label-disconnected>
 ;format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
 
 #ramp-signal-0 = 
 #ramp-signal-1 = 
@@ -481,6 +481,17 @@ exec = ~/.dotfiles/scripts/i3blocks/temperature | head -n 1
 interval = 1
 format-underline = #e59719
 label = %output%
+
+[module/custom-spotify]
+type = custom/script
+exec = ~/.dotfiles/scripts/spotify.sh
+interval = 1
+format-underline = #e59719
+label = %output%
+exec-if = pgrep -x spotify
+click-left = ~/.dotfiles/scripts/spotify.sh 1
+scroll-up = ~/.dotfiles/scripts/spotify.sh 4
+scroll-down = ~/.dotfiles/scripts/spotify.sh 5
 
 [settings]
 screenchange-reload = true

@@ -21,6 +21,8 @@ exec --no-startup-id clipit
 #exec --no-startup-id volumeicon
 # Open Workspace 2
 exec --no-startup-id i3-msg 'workspace $workspace2'
+# Create a screenshots folder in /tmp
+exec --no-startup-id mkdir /tmp/screenshots
 
 
 #Font for window titles.
@@ -154,12 +156,17 @@ bindsym $mod+Shift+plus exec ~/.dotfiles/scripts/i3blocks/brightness.sh up
 bindsym XF86MonBrightnessDown exec ~/.dotfiles/scripts/i3blocks/brightness.sh down
 bindsym XF86MonBrightnessUp exec ~/.dotfiles/scripts/i3blocks/brightness.sh up
 
+# Laptop AudioControls
+bindsym XF86AudioPlay exec ~/.dotfiles/scripts/spotify.sh 1
+bindsym XF86AudioPrev exec ~/.dotfiles/scripts/spotify.sh 5
+bindsym XF86AudioNext exec ~/.dotfiles/scripts/spotify.sh 4
+
 bindsym $mod+Escape exec "~/.dotfiles/scripts/i3exit lock"
 bindsym XF86Sleep exec "~/.dotfiles/scripts/i3exit suspend"
 bindsym $mod+grave exec ~/.dotfiles/scripts/toggle_touchpad.sh
-bindsym --release Print exec scrot -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
-bindsym --release $mod+Print exec scrot -u -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
-bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots/ && eog ~/Pictures/screenshots/$f'
+bindsym --release Print exec scrot -e 'mv $f /tmp/screenshots/ && eog /tmp/screenshots/$f'
+bindsym --release $mod+Print exec scrot -u -e 'mv $f /tmp/screenshots/ && eog /tmp/screenshots/$f'
+bindsym --release $mod+Shift+Print exec scrot -s -e 'mv $f /tmp/screenshots/ && eog /tmp/screenshots/$f'
 
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
@@ -295,6 +302,7 @@ assign [class="termite-reddit"] $workspace7
 assign [class="Subl3"] $workspace8
 assign [class="TeXstudio"] $workspace8
 assign [class="jetbrains-studio"] $workspace8
+assign [class="Remarkable"] $workspace8
 
 # Torrent Client 
 assign [class="Deluge"] $workspace8
